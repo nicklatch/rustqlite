@@ -1,4 +1,3 @@
-use crate::MetaCommandResult::MetaCommandSuccess;
 use std::{
     fmt::Error,
     io::{stdout, Write},
@@ -13,6 +12,7 @@ pub enum PrepareResult {
     PrepareSuccess,
     PrepareUnrecognizedStatement,
 }
+
 #[derive(Clone, Copy)]
 pub enum StatementType {
     Insert,
@@ -35,7 +35,7 @@ pub fn do_meta_command(input: &String) -> MetaCommandResult {
         }
         _ => {
             println!("Unrecognized command '{:?}'.", input);
-            MetaCommandSuccess
+            MetaCommandResult::MetaCommandSuccess
         }
     }
 }
@@ -74,7 +74,7 @@ fn main() {
         input = input.trim().to_string();
         if input.as_str().starts_with('.') {
             match do_meta_command(&input) {
-                MetaCommandSuccess => continue,
+                MetaCommandResult::MetaCommandSuccess => continue,
                 MetaCommandResult::MetaCommandUnrecognizedCommand => {
                     println!("Unrecognized command {}", &input);
                     continue;
