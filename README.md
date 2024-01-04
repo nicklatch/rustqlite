@@ -1,3 +1,5 @@
 #RUSTQLITE
 
-A simple sqlite toy clone.
+A simple toy sqlite clone.
+
+INCOMPLETE
